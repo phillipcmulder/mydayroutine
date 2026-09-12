@@ -57,6 +57,36 @@
   .greeting{position:absolute;top:22px;left:28px;right:28px;display:flex;align-items:flex-start;justify-content:space-between;color:var(--text-on-sky);transition:color 1s}
   .greeting h1{margin:0;font-size:38px;font-weight:700;line-height:1;text-shadow:0 1px 0 rgba(255,255,255,.25)}
   .greeting h1 small{display:block;font-size:18px;font-weight:500;opacity:.9;margin-top:8px}
+  .hdr-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .weather{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.72);padding:8px 18px 8px 12px;border-radius:26px;color:var(--text-on-sky);backdrop-filter:blur(6px);box-shadow:0 5px 0 rgba(0,0,0,.08);transition:color 1s}
+  .weather[hidden]{display:none}
+  .weather .wx-ico{width:64px;height:54px;display:block}
+  .weather .wx-ico svg{width:100%;height:100%;filter:drop-shadow(0 2px 0 rgba(58,42,26,.15))}
+  .weather .wx-t{display:flex;flex-direction:column;line-height:1;gap:4px}
+  .weather b{font-size:34px;font-weight:700}
+  .weather small{font-size:16px;font-weight:600;opacity:.9}
+  .thermo{position:relative;width:18px;height:58px;border-radius:9px;background:#fff;border:2.5px solid #3A2A1A;overflow:visible;margin-left:4px}
+  .thermo i{position:absolute;left:3px;right:3px;bottom:3px;height:20%;border-radius:6px;background:var(--tcol,#FF8C42);transition:height .8s,background .8s}
+  .thermo em{position:absolute;left:50%;bottom:-12px;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:var(--tcol,#FF8C42);border:2.5px solid #3A2A1A;transition:background .8s}
+
+  /* ---------- WEEK STRIP ---------- */
+  .week{display:flex;align-items:center;gap:10px;padding:12px 24px 2px;background:var(--card);flex:none;position:relative;z-index:2}
+  .week .d{flex:1;text-align:center;border-radius:18px;padding:10px 4px 8px;background:#DCEBFA;color:#2F5F8A;font-size:20px;font-weight:600;box-shadow:inset 0 -3px 0 rgba(0,0,0,.06);position:relative;transition:transform .2s}
+  .week .d small{display:block;font-size:12px;font-weight:500;margin-top:2px;opacity:.8}
+  .week .d svg{width:24px;height:20px;display:block;margin:0 auto 2px}
+  .week .d:not(.home){padding-top:32px}
+  .week .d.home{background:#FFE9B3;color:#8A5A00}
+  .week .d.sab{background:#FFDA7A;color:#6B4400}
+  .week .d.today{background:#2E86DE;color:#fff;transform:translateY(-4px) scale(1.06);box-shadow:0 0 0 4px #fff,0 0 0 7px #2E86DE,0 8px 18px rgba(0,0,0,.15);z-index:1}
+  .week .d.today.home{background:#F5A623;box-shadow:0 0 0 4px #fff,0 0 0 7px #F5A623,0 8px 18px rgba(0,0,0,.15)}
+  .week .d.today.sab{background:#E8890C;box-shadow:0 0 0 4px #fff,0 0 0 7px #E8890C,0 8px 18px rgba(0,0,0,.15)}
+  .week .key{flex:none;margin-left:10px;display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:#6B6480}
+  .week .key span{display:flex;align-items:center;gap:6px}
+  .week .key i{width:14px;height:14px;border-radius:4px;display:inline-block}
+  .week .d.today small{opacity:1}
+  .week .d .crown{position:absolute;top:-12px;right:-6px;width:32px;height:28px;filter:drop-shadow(0 2px 0 rgba(0,0,0,.2))}
+  .week .d .crown svg{width:100%;height:100%;margin:0}
+  .week .date{flex:none;margin-left:10px;font-size:18px;font-weight:600;color:#6B6480;white-space:nowrap}
   .starcount{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.6);padding:10px 20px 10px 14px;border-radius:999px;font-size:28px;font-weight:700;color:#7A5A00;backdrop-filter:blur(6px);box-shadow:0 4px 0 rgba(0,0,0,.08)}
   .starcount svg{width:36px;height:36px;filter:drop-shadow(0 2px 0 rgba(0,0,0,.12))}
   .starcount.bump svg{animation:bump .45s}
@@ -86,7 +116,7 @@
 
   /* ---------- VERSE ---------- */
   main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--card);padding:8px 24px 130px}
-  .verse{max-width:1100px;margin:6px auto 22px;display:flex;align-items:center;gap:18px;background:#FFF6DF;border:2px solid #F2DDA6;border-radius:28px;padding:16px 22px;box-shadow:0 5px 0 #EAD79E}
+  .verse{cursor:pointer;max-width:1100px;margin:6px auto 22px;display:flex;align-items:center;gap:18px;background:#FFF6DF;border:2px solid #F2DDA6;border-radius:28px;padding:16px 22px;box-shadow:0 5px 0 #EAD79E}
   .verse svg{width:60px;height:52px;flex:none}
   .v-text{font-size:23px;font-weight:600;line-height:1.3;color:#4A3512}
   .v-ref{font-size:17px;font-weight:500;color:#9A7A2E;margin-top:4px}
@@ -151,7 +181,7 @@
   .sheet p{font-size:15px;color:#6B6480;margin:14px 0 0}
 
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-  @media (max-width:560px){:root{--tile-w:145px}.tile .pic{width:96px;height:96px}.tile .name{font-size:20px}.greeting h1{font-size:28px}.tab svg{width:42px;height:34px}.tab .lbl{font-size:16px}header{height:180px}.path .seg{max-width:34px}}
+  @media (max-width:560px){:root{--tile-w:145px}.weather{padding:4px 10px 4px 6px;gap:6px}.weather b{font-size:20px}.weather small{font-size:11px}.weather .wx-ico{width:36px;height:30px}.thermo{width:12px;height:36px}.thermo em{width:18px;height:18px;margin-left:-9px;bottom:-9px}.week .d{font-size:14px;padding:8px 2px 6px}.week .date,.week .key{display:none}.week .d svg{width:18px;height:15px}.tile .pic{width:96px;height:96px}.tile .name{font-size:20px}.greeting h1{font-size:28px}.tab svg{width:42px;height:34px}.tab .lbl{font-size:16px}header{height:180px}.path .seg{max-width:34px}}
 </style>
 </head>
 <body class="period-morning">
@@ -187,9 +217,18 @@
   </svg>
   <div class="greeting">
     <h1 id="greet">Good morning, Elias!<small id="sub">This is the day the LORD has made</small></h1>
-    <div class="starcount" id="starcount"><span id="crown-svg"></span><span id="stars-n">0</span></div>
+    <div class="hdr-right">
+      <div class="weather" id="weather" hidden>
+        <span class="wx-ico" id="wx-ico"></span>
+        <span class="wx-t"><b id="wx-temp"></b><small id="wx-word"></small></span>
+        <span class="thermo"><i id="thermo-fill"></i><em id="thermo-bulb"></em></span>
+      </div>
+      <div class="starcount" id="starcount"><span id="crown-svg"></span><span id="stars-n">0</span></div>
+    </div>
   </div>
 </header>
+
+<div class="week" id="week"></div>
 
 <nav>
   <button class="tab active" data-p="morning"><span class="ring" style="--pct:0"></span><span id="tab-morning"></span><span class="lbl">Morning</span></button>
@@ -240,7 +279,8 @@
   <div class="row">
     <button id="reset-period">Reset this part of the day</button>
     <button id="reset-all" class="warn">Reset the whole day</button>
-    <button id="sound-toggle">Sound: on</button>
+    <button id="sound-toggle">Trumpet: on</button>
+    <button id="voice-toggle">Voice: on</button>
     <button id="close-sheet">Close</button>
   </div>
   <p>Progress saves on this iPad and starts fresh each morning automatically. To change the child's name or the tasks, edit the list near the bottom of this file.</p>
@@ -284,6 +324,35 @@ const ROUTINE = {
     ["sleep", "Sleep"],
   ],
 };
+
+/* Shabbat (Saturday) routine: shorter, no homeschool, no exercise, no chores */
+const ROUTINE_SHABBAT = {
+  morning: [
+    ["pray", "Pray"],
+    ["teeth", "Brush teeth"],
+    ["dressed", "Get dressed"],
+    ["breakfast", "Breakfast"],
+  ],
+  day: [
+    ["bible", "Bible story"],
+    ["worship", "Worship & sing"],
+    ["family", "Family time"],
+    ["lunch", "Lunch"],
+    ["rest", "Rest"],
+    ["blocks", "Play"],
+  ],
+  evening: [
+    ["dinner", "Dinner"],
+    ["teeth", "Brush teeth"],
+    ["bath", "Bath"],
+    ["pyjamas", "Pyjamas"],
+    ["bible", "Bible story"],
+    ["pray", "Pray"],
+    ["sleep", "Sleep"],
+  ],
+};
+const isShabbat = () => new Date().getDay()===6;
+const R = () => isShabbat() ? ROUTINE_SHABBAT : ROUTINE;
 
 /* Verse of the day. Short, King James wording. Rotates each day and on reset. */
 const VERSES = [
@@ -531,6 +600,76 @@ exercise: `<svg ${S}>${G}
   <path d="M55 28 Q60 32 65 28" fill="none"/>
   <circle cx="56" cy="23" r="1.6" fill="#3A2A1A" stroke="none"/><circle cx="64" cy="23" r="1.6" fill="#3A2A1A" stroke="none"/>
 </g></svg>`,
+candles: `<svg ${S}>${G}
+  <rect x="34" y="44" width="14" height="44" rx="4" fill="#fff"/><rect x="72" y="44" width="14" height="44" rx="4" fill="#fff"/>
+  <path d="M41 42 Q30 28 41 16 Q52 28 41 42 Z" fill="#FF8C42"/><path d="M79 42 Q68 28 79 16 Q90 28 79 42 Z" fill="#FF8C42"/>
+  <path d="M41 38 Q36 30 41 24 Q46 30 41 38 Z" fill="#FFD23F" stroke="none"/><path d="M79 38 Q74 30 79 24 Q84 30 79 38 Z" fill="#FFD23F" stroke="none"/>
+  <rect x="24" y="86" width="72" height="8" rx="3" fill="#F5A623"/>
+</g></svg>`,
+home: `<svg ${S}>${G}
+  <path d="M14 52 L60 14 L106 52" fill="none" stroke-width="6"/>
+  <rect x="26" y="50" width="68" height="42" fill="#F6E7C8"/>
+  <path d="M14 52 L60 14 L106 52 Z" fill="#D9534F"/>
+  <rect x="50" y="64" width="20" height="28" fill="#8C5A2B"/>
+  <rect x="32" y="60" width="12" height="12" fill="#9ED3F5"/><rect x="76" y="60" width="12" height="12" fill="#9ED3F5"/>
+</g></svg>`,
+work: `<svg ${S}>${G}
+  <rect x="14" y="34" width="92" height="56" rx="8" fill="#8C5A2B"/>
+  <path d="M44 34 V22 Q44 16 50 16 H70 Q76 16 76 22 V34" fill="none" stroke-width="5"/>
+  <path d="M14 56 H106" stroke-width="3"/>
+  <rect x="52" y="50" width="16" height="12" rx="3" fill="#FFD23F"/>
+</g></svg>`,
+menorah: `<svg ${S}>${G}
+  <path d="M60 32 V78 M24 40 Q24 70 60 70 Q96 70 96 40 M36 36 Q36 64 60 64 Q84 64 84 36 M48 32 Q48 58 60 58 Q72 58 72 32" fill="none" stroke="#F5A623" stroke-width="6"/>
+  <path d="M60 32 V78 M24 40 Q24 70 60 70 Q96 70 96 40 M36 36 Q36 64 60 64 Q84 64 84 36 M48 32 Q48 58 60 58 Q72 58 72 32" fill="none" stroke-width="2"/>
+  <rect x="44" y="78" width="32" height="8" rx="3" fill="#F5A623"/><rect x="36" y="86" width="48" height="8" rx="3" fill="#F5A623"/>
+  <path d="M24 38 Q18 26 24 16 Q30 26 24 38Z M36 34 Q30 22 36 12 Q42 22 36 34Z M48 30 Q42 18 48 8 Q54 18 48 30Z M60 30 Q54 18 60 8 Q66 18 60 30Z M72 30 Q66 18 72 8 Q78 18 72 30Z M84 34 Q78 22 84 12 Q90 22 84 34Z M96 38 Q90 26 96 16 Q102 26 96 38Z" fill="#FF8C42"/>
+</g></svg>`,
+wx_sun: `<svg ${S}>${G}
+  <circle cx="60" cy="50" r="24" fill="#FFD166"/>
+  <path d="M60 8 V20 M60 80 V92 M18 50 H30 M90 50 H102 M30 20 L38 28 M82 72 L90 80 M90 20 L82 28 M38 72 L30 80" stroke="#FF8C42" stroke-width="4"/>
+</g></svg>`,
+wx_partly: `<svg ${S}>${G}
+  <circle cx="44" cy="38" r="20" fill="#FFD166"/>
+  <path d="M44 6 V14 M12 38 H20 M22 16 L28 22 M66 16 L60 22" stroke="#FF8C42" stroke-width="4"/>
+  <path d="M40 84 H96 Q112 84 112 68 Q112 54 96 54 Q94 36 76 36 Q62 36 58 48 Q40 46 36 62 Q26 64 26 74 Q26 84 40 84 Z" fill="#fff"/>
+</g></svg>`,
+wx_cloud: `<svg ${S}>${G}
+  <path d="M30 84 H96 Q112 84 112 68 Q112 54 96 54 Q94 34 74 34 Q58 34 54 48 Q36 46 32 62 Q18 64 18 74 Q18 84 30 84 Z" fill="#fff"/>
+</g></svg>`,
+wx_rain: `<svg ${S}>${G}
+  <path d="M30 66 H96 Q112 66 112 50 Q112 36 96 36 Q94 18 74 18 Q58 18 54 32 Q36 30 32 46 Q18 48 18 58 Q18 66 30 66 Z" fill="#D9DEE6"/>
+  <path d="M40 74 L34 90 M60 74 L54 90 M80 74 L74 90" stroke="#2E86DE" stroke-width="5"/>
+</g></svg>`,
+wx_storm: `<svg ${S}>${G}
+  <path d="M30 60 H96 Q112 60 112 44 Q112 30 96 30 Q94 12 74 12 Q58 12 54 26 Q36 24 32 40 Q18 42 18 52 Q18 60 30 60 Z" fill="#9AA3B2"/>
+  <path d="M64 58 L50 80 H62 L56 98 L76 70 H64 Z" fill="#FFD23F"/>
+</g></svg>`,
+wx_snow: `<svg ${S}>${G}
+  <path d="M30 62 H96 Q112 62 112 46 Q112 32 96 32 Q94 14 74 14 Q58 14 54 28 Q36 26 32 42 Q18 44 18 54 Q18 62 30 62 Z" fill="#fff"/>
+  <circle cx="40" cy="80" r="5" fill="#9ED3F5"/><circle cx="60" cy="88" r="5" fill="#9ED3F5"/><circle cx="80" cy="80" r="5" fill="#9ED3F5"/>
+</g></svg>`,
+wx_fog: `<svg ${S}>${G}
+  <path d="M30 56 H96 Q112 56 112 40 Q112 26 96 26 Q94 8 74 8 Q58 8 54 22 Q36 20 32 36 Q18 38 18 48 Q18 56 30 56 Z" fill="#E6E9EE"/>
+  <path d="M22 70 H98 M30 82 H90 M40 94 H80" stroke="#9AA3B2" stroke-width="5"/>
+</g></svg>`,
+family: `<svg ${S}>${G}
+  <circle cx="30" cy="30" r="12" fill="#F2C29B"/><path d="M18 26 Q30 12 42 26 Q38 18 30 17 Q22 18 18 26Z" fill="#6B3F1D"/>
+  <path d="M12 92 Q12 54 30 52 Q48 54 48 92 Z" fill="#2E86DE"/>
+  <circle cx="90" cy="32" r="11" fill="#F2C29B"/><path d="M78 40 Q78 14 90 16 Q102 14 102 40 Q96 30 90 32 Q84 30 78 40Z" fill="#8C5A2B"/>
+  <path d="M72 92 Q72 56 90 54 Q108 56 108 92 Z" fill="#E63946"/>
+  <circle cx="60" cy="52" r="9" fill="#F2C29B"/><path d="M51 48 Q60 38 69 48 Q66 43 60 42 Q54 43 51 48Z" fill="#6B3F1D"/>
+  <path d="M48 92 Q48 66 60 64 Q72 66 72 92 Z" fill="#2DC653"/>
+  <path d="M26 33 Q30 36 34 33 M86 35 Q90 38 94 35 M57 54 Q60 57 63 54" fill="none"/>
+</g></svg>`,
+rest: `<svg ${S}>${G}
+  <rect x="10" y="30" width="8" height="62" rx="3" fill="#8C5A2B"/><rect x="102" y="30" width="8" height="62" rx="3" fill="#8C5A2B"/>
+  <path d="M18 40 Q60 92 102 40" fill="none" stroke="#3A2A1A" stroke-width="3"/>
+  <path d="M22 44 Q60 84 98 44 Q80 70 60 70 Q40 70 22 44 Z" fill="#E63946"/>
+  <path d="M34 50 Q60 76 86 50" stroke="#F8F1E4" stroke-width="3" fill="none"/>
+  <circle cx="60" cy="18" r="9" fill="#FFD23F"/>
+  <path d="M60 4 V8 M46 18 H50 M70 18 H74 M50 8 L53 11 M70 8 L67 11" stroke="#FF8C42" stroke-width="2.5"/>
+</g></svg>`,
 crown: `<svg ${S}>${G}
   <path d="M14 72 L8 26 L36 48 L60 14 L84 48 L112 26 L106 72 Z" fill="#FFD23F"/>
   <rect x="14" y="72" width="92" height="16" rx="4" fill="#F5A623"/>
@@ -562,6 +701,8 @@ let AC=null;
 function ac(){ if(!AC){ const C=window.AudioContext||window.webkitAudioContext; if(!C) return null; AC=new C(); } if(AC.state==="suspended") AC.resume(); return AC; }
 function soundOn(){ try{ return localStorage.getItem("myday:sound")!=="off"; }catch(e){ return true; } }
 function setSound(on){ try{ localStorage.setItem("myday:sound", on?"on":"off"); }catch(e){} }
+function voiceOn(){ try{ return localStorage.getItem("myday:voice")!=="off"; }catch(e){ return true; } }
+function setVoice(on){ try{ localStorage.setItem("myday:voice", on?"on":"off"); }catch(e){} }
 function brass(freq, t0, dur, vol){
   const c=ac(); if(!c) return;
   const t=c.currentTime+t0;
@@ -574,6 +715,25 @@ function brass(freq, t0, dur, vol){
   o1.connect(f); o3.connect(f); o2.connect(g2); g2.connect(f); f.connect(g); g.connect(c.destination);
   [o1,o2,o3].forEach(o=>{o.start(t); o.stop(t+dur+0.05);});
 }
+/* voice: the iPad reads the task or the verse out loud (built in, offline) */
+let VOICE=null;
+function pickVoice(){
+  if(!window.speechSynthesis) return;
+  const vs=speechSynthesis.getVoices();
+  VOICE = vs.find(v=>/en-ZA/i.test(v.lang)) || vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null;
+}
+if(window.speechSynthesis){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+function speak(text, delay){
+  if(!voiceOn() || !window.speechSynthesis) return;
+  setTimeout(()=>{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    if(VOICE) u.voice=VOICE;
+    u.rate=0.9; u.pitch=1.1; u.volume=1;
+    speechSynthesis.speak(u);
+  }, delay||0);
+}
+
 /* a different little trumpet call for each tile, cycling through six */
 const CALLS=[
   [[523,0,.16],[659,.14,.16],[784,.28,.34]],           /* rising  do mi so */
@@ -628,15 +788,77 @@ document.getElementById("tab-evening").innerHTML = icon("moon");
 document.getElementById("confirm-pic").innerHTML = icon("sunrise");
 showVerse();
 
+/* week strip: Sun to Shabbat, today lit up */
+function showDate(){
+  const d=new Date();
+  const short=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const w=document.getElementById("week"); w.innerHTML="";
+  const sunday=new Date(d); sunday.setDate(d.getDate()-d.getDay());
+  for(let i=0;i<7;i++){
+    const el=document.createElement("div");
+    const home = i===0 || i===6;
+    const day=new Date(sunday); day.setDate(sunday.getDate()+i);
+    let won=false; try{ won=localStorage.getItem("myday:done:"+day.toISOString().slice(0,10))==="1"; }catch(e){}
+    el.className="d"+(home?" home":"")+(i===6?" sab":"")+(i===d.getDay()?" today":"")+(won?" won":"");
+    const pic = i===6 ? icon("menorah") : i===0 ? icon("home") : "";
+    el.innerHTML = pic + (i===6?"Shabbat":short[i]) + (i===d.getDay()?"<small>today</small>":"") + (won?'<span class="crown">'+icon("crown")+'</span>':"");
+    w.appendChild(el);
+  }
+  const dt=document.createElement("div"); dt.className="date"; dt.textContent=d.getDate()+" "+months[d.getMonth()]; w.appendChild(dt);
+}
+showDate();
+setInterval(showDate, 60000);
+/* weather for today (Open-Meteo, free, no key). Uses the iPad's location if allowed, else Al Ain. */
+const HOME_LATLON=[24.21,55.76];
+function wxIcon(code){
+  if(code===0) return "wx_sun";
+  if(code<=2) return "wx_partly";
+  if(code===3) return "wx_cloud";
+  if(code<=48) return "wx_fog";
+  if(code<=67||(code>=80&&code<=82)) return "wx_rain";
+  if(code<=77||code===85||code===86) return "wx_snow";
+  return "wx_storm";
+}
+function wxWord(t){ return t>=38?"Very hot":t>=30?"Hot":t>=22?"Warm":t>=14?"Cool":"Cold"; }
+function loadWeather(lat,lon){
+  const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=auto`;
+  fetch(url).then(r=>r.json()).then(j=>{
+    const t=Math.round(j.current.temperature_2m), c=j.current.weather_code;
+    document.getElementById("wx-ico").innerHTML=icon(wxIcon(c));
+    document.getElementById("wx-temp").textContent=t+"°";
+    document.getElementById("wx-word").textContent=wxWord(t);
+    const pct=Math.max(8,Math.min(95,(t+5)/50*100));
+    const col=t>=38?"#D62828":t>=30?"#FF5A36":t>=22?"#FF8C42":t>=14?"#4FB3F0":"#2E5FD9";
+    const th=document.querySelector(".thermo"); th.style.setProperty("--tcol",col);
+    document.getElementById("thermo-fill").style.height=pct+"%";
+    document.getElementById("weather").hidden=false;
+  }).catch(()=>{});
+}
+function startWeather(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(
+      p=>loadWeather(p.coords.latitude.toFixed(2),p.coords.longitude.toFixed(2)),
+      ()=>loadWeather(...HOME_LATLON),
+      {timeout:6000,maximumAge:3600000});
+  } else loadWeather(...HOME_LATLON);
+}
+startWeather();
+setInterval(startWeather, 30*60*1000);
+
+/* roll to a fresh board automatically after midnight */
+let lastKey=todayKey();
+setInterval(()=>{ if(todayKey()!==lastKey){ lastKey=todayKey(); state=load(); showVerse(); render(); } }, 60000);
+
 const grid=document.getElementById("grid"), body=document.body, pathEl=document.getElementById("path");
 
 function render(){
-  body.className="period-"+current;
-  document.getElementById("greet").firstChild.textContent=META[current].greet;
-  document.getElementById("sub").textContent=META[current].sub;
+  body.className="period-"+current+(isShabbat()?" shabbat":"");
+  document.getElementById("greet").firstChild.textContent=isShabbat()?"Shabbat Shalom, "+CHILD+"!":META[current].greet;
+  document.getElementById("sub").textContent=isShabbat()?"Rest, rejoice, and remember Him":META[current].sub;
   document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.p===current));
 
-  const tasks=ROUTINE[current], done=state[current];
+  const tasks=R()[current], done=state[current];
   const nextIdx=tasks.findIndex((_,i)=>!done.includes(i));
 
   grid.innerHTML="";
@@ -660,19 +882,22 @@ function render(){
 
 function toggle(i,el){
   const d=state[current], idx=d.indexOf(i);
-  if(idx===-1){ d.push(i); burst(el); toot(i); if(navigator.vibrate) navigator.vibrate(30); } else d.splice(idx,1);
+  if(idx===-1){ d.push(i); burst(el); toot(i); speak(R()[current][i][1], 650); if(navigator.vibrate) navigator.vibrate(30); } else d.splice(idx,1);
   save(); render();
-  if(d.length===ROUTINE[current].length && idx===-1) setTimeout(celebrate,450);
+  const allDone = PERIODS.every(p=>state[p].length===R()[p].length);
+  try{ if(allDone) localStorage.setItem("myday:done:"+new Date().toISOString().slice(0,10),"1"); else localStorage.removeItem("myday:done:"+new Date().toISOString().slice(0,10)); }catch(e){}
+  showDate();
+  if(d.length===R()[current].length && idx===-1) setTimeout(celebrate,450);
 }
 function updateRings(){
   document.querySelectorAll(".tab").forEach(t=>{
-    const p=t.dataset.p, pct=Math.round(state[p].length/ROUTINE[p].length*100);
+    const p=t.dataset.p, pct=Math.round(state[p].length/R()[p].length*100);
     t.querySelector(".ring").style.setProperty("--pct",pct);
     t.classList.toggle("complete",pct===100);
   });
 }
 function updateSun(){
-  const total=PERIODS.reduce((a,p)=>a+ROUTINE[p].length,0), doneN=PERIODS.reduce((a,p)=>a+state[p].length,0);
+  const total=PERIODS.reduce((a,p)=>a+R()[p].length,0), doneN=PERIODS.reduce((a,p)=>a+state[p].length,0);
   const prog=doneN/total, arc=-Math.sin(prog*Math.PI)*80;
   const sun=document.getElementById("sun");
   sun.style.setProperty("--progress",prog); sun.style.setProperty("--arc",arc);
@@ -710,17 +935,23 @@ document.getElementById("party-btn").addEventListener("click",()=>{
   const i=PERIODS.indexOf(current); if(i<PERIODS.length-1){ current=PERIODS[i+1]; render(); }
 });
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{ current=t.dataset.p; render(); }));
+document.getElementById("verse").addEventListener("click",()=>{
+  const t=document.getElementById("v-text").textContent.replace(/[\u201C\u201D]/g,""), r=document.getElementById("v-ref").textContent;
+  speak(t+". "+r, 0);
+});
 
 /* parent controls */
 const sheet=document.getElementById("sheet");
 document.getElementById("gear").addEventListener("click",()=>sheet.classList.add("show"));
 document.getElementById("close-sheet").addEventListener("click",()=>sheet.classList.remove("show"));
 const st=document.getElementById("sound-toggle");
-function paintSound(){ st.textContent="Sound: "+(soundOn()?"on":"off"); }
+const vt=document.getElementById("voice-toggle");
+function paintSound(){ st.textContent="Trumpet: "+(soundOn()?"on":"off"); vt.textContent="Voice: "+(voiceOn()?"on":"off"); }
 st.addEventListener("click",()=>{ setSound(!soundOn()); paintSound(); if(soundOn()) toot(); });
+vt.addEventListener("click",()=>{ setVoice(!voiceOn()); paintSound(); if(voiceOn()) speak("Voice is on",0); });
 paintSound();
 document.getElementById("reset-period").addEventListener("click",()=>{ state[current]=[]; save(); render(); sheet.classList.remove("show"); });
-function newDay(){ state={morning:[],day:[],evening:[]}; save(); bumpVerse(); showVerse(); current="morning"; render(); }
+function newDay(){ state={morning:[],day:[],evening:[]}; save(); try{ localStorage.removeItem("myday:done:"+new Date().toISOString().slice(0,10)); }catch(e){} bumpVerse(); showVerse(); current="morning"; render(); showDate(); }
 document.getElementById("reset-all").addEventListener("click",()=>{ sheet.classList.remove("show"); newDay(); });
 const confirmBox=document.getElementById("confirm");
 document.getElementById("reset-day").addEventListener("click",()=>confirmBox.classList.add("show"));
